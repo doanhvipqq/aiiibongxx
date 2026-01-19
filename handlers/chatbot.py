@@ -106,11 +106,20 @@ class ChatbotHandler:
         )
 
     def clean_response(self, text):
+        # Remove <think> tags
         cleaned = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL).strip()
-        cleaned = re.sub(r'(?<!\*)\*(?!\*)', '**', cleaned) # Start to Bold
+        
+        # Remove all markdown formatting for clean text display
+        cleaned = re.sub(r'\*\*', '', cleaned)  # Remove bold **
+        cleaned = re.sub(r'\*', '', cleaned)    # Remove italic *
+        cleaned = re.sub(r'__', '', cleaned)    # Remove underline __
+        cleaned = re.sub(r'_', '', cleaned)     # Remove italic _
+        cleaned = re.sub(r'~~', '', cleaned)    # Remove strikethrough ~~
+        cleaned = re.sub(r'`', '', cleaned)     # Remove code `
+        
         if not cleaned:
             return "..."
-        return cleaned
+        return cleaned.strip()
 
     async def generate_reply(self, user_input, history=""):
         full_prompt = f"Chat History:\n{history}\n\nUser: {user_input}"
