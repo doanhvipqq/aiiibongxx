@@ -1,0 +1,33 @@
+# Sensitive Files
+.env
+api_keys.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (optional - uncomment if you want to keep local data private)
+# data/logs.json
+# data/viettat.json
