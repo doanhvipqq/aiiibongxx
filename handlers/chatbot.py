@@ -28,7 +28,10 @@ class ChatbotHandler:
                 keys = data.get("cerebras_api_keys", [])
         except FileNotFoundError:
             log.error("api_keys.json not found!")
-            return []
+        
+        if not keys:
+            log.warning("No keys found in api_keys.json!")
+        return keys
 
     def rotate_key(self):
         if not self.keys:

@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from utils.logger import log
 from handlers.chatbot import ChatbotHandler
 from handlers.general import GeneralHandler
+from keep_alive import keep_alive
 
 # Load Environment
 load_dotenv()
@@ -21,6 +22,9 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 
 def main():
     log.info("--- Initializing Antigravity Telegram Bot ---")
+    
+    # Start keep-alive web server for Render
+    keep_alive()
     
     app = ApplicationBuilder().token(TOKEN).build()
     
